@@ -3,6 +3,7 @@ import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
 import 'package:receitoteca/widgets/image_revenue.dart';
+import 'package:receitoteca/widgets/random_revenue.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -71,7 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       }, 
                       child: ImageRevenue(receita: receita)
-                    )
+                    ),
+                    const SizedBox(height: 20,),
+                    const SorteadorReceita()
                   ],
                 ),
               ),
