@@ -55,7 +55,21 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ImageRevenue(receita: receita),
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          '${receita!.meals!.first.strMeal}',
+                          style: const TextStyle(fontSize: 32, color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.black,
+                              offset: Offset(2, 2),
+                            ),],
+                          ),
+                        ),
+                      ),
+                      ImageRevenue(receita: receita, visibleName: false, visibleStyle: false,),
                       const SizedBox(height: 20),
                       Text(
                         'Ingredientes: \n${receita!.meals!.first.strMeasure1} ${receita!.meals!.first.strIngredient1}',
