@@ -2,6 +2,7 @@
 import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
+import 'package:receitoteca/widgets/card_revenue.dart';
 import 'package:receitoteca/widgets/image_revenue.dart';
 
 class SorteadorReceita extends StatefulWidget {
@@ -65,7 +66,7 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
                     )
                   );
                 }, 
-                child: ImageRevenue(receita: receita)
+                child: ReceitaCard(receita: receita)
               ),
         ],
       ),
