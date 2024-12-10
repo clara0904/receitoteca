@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         );
                       }, 
-                      child: ImageRevenue(receita: receita)
+                      child: ImageRevenue(receita: receita, visibleName: true, visibleStyle: true,)
                     ),
                     const SizedBox(height: 20,),
                     const SorteadorReceita()
