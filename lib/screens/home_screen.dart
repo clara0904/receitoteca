@@ -65,18 +65,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    //crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Receita do dia',
                         style: TextStyle(
                           fontSize: 24,
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
                               blurRadius: 10.0,
-                              color: Colors.black,
-                              offset: Offset(2, 2),
+                              color: Colors.black.withOpacity(0.5),
+                              offset: const Offset(2, 2),
                             ),
                           ],
                         ),
@@ -92,15 +93,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                        child: ImageRevenue(
-                          receita: receita,
-                          visibleName: true,
-                          visibleStyle: true,
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ImageRevenue(
+                            receita: receita,
+                          ),
                         ),
                       ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 18),
+                    const Text(
+                      'Escolha sua receita por categoria:',
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                      ),
+                    ),
                       categorias.isNotEmpty
-                          ? CategoriaButton(categorias: categorias,)
+                          ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CategoriaButton(categorias: categorias,),
+                          )
                           : const Center(
                               child: Text(
                                 'Nenhuma categoria encontrada.',
