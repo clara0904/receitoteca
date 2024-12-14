@@ -69,7 +69,11 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
                           ),
                         ),
                       ),
-                      ImageRevenue(receita: receita, visibleName: false, visibleStyle: false,),
+                      Image.network(
+                        receita!.meals!.first.strMealThumb ?? '',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
                       const SizedBox(height: 20),
                       Text(
                         'Ingredientes: \n${receita!.meals!.first.strMeasure1} ${receita!.meals!.first.strIngredient1}',
