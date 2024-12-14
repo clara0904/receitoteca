@@ -8,11 +8,8 @@ class ReceitaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: ColorsApp.backgroundPrimario,
-      ),
+    return Card(
+      elevation: 6,
       child: Row(
         children: [
           Padding(
