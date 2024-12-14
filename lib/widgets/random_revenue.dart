@@ -3,7 +3,6 @@ import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
 import 'package:receitoteca/widgets/card_revenue.dart';
-import 'package:receitoteca/widgets/image_revenue.dart';
 
 class SorteadorReceita extends StatefulWidget {
   const SorteadorReceita({super.key});
@@ -49,7 +48,7 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
               ),
             ),
             child: const Text(
-              'Clique aqui e descubra sua nova receita',
+              'Descubra sua nova receita',
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromARGB(255, 8, 70, 120),
@@ -73,3 +72,4 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
     );
   }
 }
+
