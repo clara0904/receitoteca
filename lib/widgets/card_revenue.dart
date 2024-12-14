@@ -13,7 +13,7 @@ class ReceitaCard extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
@@ -54,14 +54,15 @@ class ReceitaCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.only(top:8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(
                         Icons.favorite_border,
                         color: Colors.red,
                       ),
+                      SizedBox(width: 8,),
                       Icon(
                         Icons.bookmark_outline,
                         color: Colors.grey,
