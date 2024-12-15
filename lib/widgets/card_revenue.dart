@@ -8,72 +8,77 @@ class ReceitaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                receita!.meals!.first.strMealThumb ?? '',
-                fit: BoxFit.cover,
-                width: 108,
-                height: 108,
+    return SizedBox(
+      width: 400,
+      child: Card(
+        color: ColorsApp.backgroundCard,
+        elevation: 6,
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  receita!.meals!.first.strMealThumb ?? '',
+                  fit: BoxFit.cover,
+                  width: 108,
+                  height: 108,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 2,),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  receita!.meals!.first.strMeal ?? '',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
+            const SizedBox(width: 2,),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    receita!.meals!.first.strMeal ?? '',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: ColorsApp.corFonteSecundaria,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  'Categoria: ${receita!.meals!.first.strCategory}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
+                  Text(
+                    'Categoria: ${receita!.meals!.first.strCategory}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: ColorsApp.corFonteSecundaria,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  'Culinária: ${receita!.meals!.first.strArea}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
+                  Text(
+                    'Culinária: ${receita!.meals!.first.strArea}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: ColorsApp.corFonteSecundaria,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top:8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.favorite_border,
-                        color: Colors.red,
-                      ),
-                      SizedBox(width: 8,),
-                      Icon(
-                        Icons.bookmark_outline,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
+                  Padding(
+                    padding: const EdgeInsets.only(top:8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.star_border,
+                          color: Color.fromARGB(255, 255, 211, 53),
+                        ),
+                        const SizedBox(width: 8,),
+                        Icon(
+                          Icons.bookmark_outline,
+                          color: ColorsApp.corFonteSecundaria,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
