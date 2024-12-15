@@ -2,6 +2,7 @@
 import 'package:receitoteca/repositories/repositorio_receitas.dart';
 import 'package:receitoteca/models/receitas.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
+import 'package:receitoteca/theme/colors.dart';
 
 class ListRevenueScreen extends StatefulWidget {
   final String endpoint;
@@ -34,8 +35,7 @@ Widget build(BuildContext context) {
   return SafeArea(
     child: Scaffold(
       appBar: AppBar(
-        title: Text(widget.endpoint),
-        centerTitle: true,
+        title: Text(widget.endpoint,),
       ),
       body: receitas.isEmpty
           ? const Center(child: CircularProgressIndicator())
@@ -53,6 +53,7 @@ Widget build(BuildContext context) {
                     );
                   },
                   child: Card(
+                    color: ColorsApp.backgroundCard,
                     margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12), 
@@ -73,7 +74,11 @@ Widget build(BuildContext context) {
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           meal.strMeal ?? 'Sem título',
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontSize: 18, 
+                            fontWeight: FontWeight.bold,
+                            color: ColorsApp.corFonteSecundaria,
+                          ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
