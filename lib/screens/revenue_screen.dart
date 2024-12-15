@@ -2,6 +2,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_receita.dart';
+import 'package:receitoteca/theme/colors.dart';
 import 'package:receitoteca/widgets/image_revenue.dart';
 
 class ReceitaScreen extends StatefulWidget {
@@ -36,16 +37,8 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'RECEITOTECA',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
+            'Receitoteca',
           ),
-          centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 4, 43, 77),
-          iconTheme: const IconThemeData(color: Colors.white),
         ),
         body: receita == null
             ? const Center(child: CircularProgressIndicator())
@@ -59,13 +52,17 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
                         margin: const EdgeInsets.only(bottom: 8),
                         child: Text(
                           '${receita!.meals!.first.strMeal}',
-                          style: const TextStyle(fontSize: 32, color: Colors.white,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 10.0,
-                              color: Colors.black,
-                              offset: Offset(2, 2),
-                            ),],
+                          style: TextStyle(
+                            fontSize: 32, 
+                            color: ColorsApp.corFontePrimaria,
+                            fontWeight: FontWeight.w600,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 8.0,
+                                color: Colors.black.withOpacity(0.3),
+                                offset: const Offset(2, 2),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -76,31 +73,63 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Ingredientes: \n${receita!.meals!.first.strMeasure1} ${receita!.meals!.first.strIngredient1}',
-                        style: const TextStyle(fontSize: 18, color: Colors.white),
+                        'Ingredientes:',
+                        style: TextStyle(
+                          color: ColorsApp.corFontePrimaria,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
+                      ...List.generate(20, (index) {
+                        final ingredient = receita!.meals!.first
+                            .toJson()['strIngredient${index + 1}'];
+                        final measure = receita!.meals!.first
+                            .toJson()['strMeasure${index + 1}'];
+
+                        if (ingredient != null && ingredient.isNotEmpty) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Text(
+                              '${measure ?? ''}: $ingredient',
+                              style: TextStyle(fontSize: 18, color: ColorsApp.corFontePrimaria),
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink(); 
+                        }
+                      }),
                       const SizedBox(height: 20),
                       Text(
-                        'Instruções: \n${receita!.meals!.first.strInstructions}',
-                        style: const TextStyle(fontSize: 18, color: Colors.white),
+                        'Instruções:',
+                        style: TextStyle(fontSize: 20, 
+                          color: ColorsApp.corFontePrimaria,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        '${receita!.meals!.first.strInstructions}',
+                        style: TextStyle(fontSize: 18, color: ColorsApp.corFontePrimaria),
                       ),
                       const SizedBox(height: 20,),
-                      Row(
-                        children: [
-                          const Icon(
-                            FontAwesomeIcons.youtube,
-                            color: Colors.red,
-                            size: 34,
-                          ),
-                          const SizedBox(width: 10), 
-                          Expanded(
-                            child: Text(
-                              'Acesse o passo a passo no YouTube: \n${receita!.meals!.first.strYoutube}',
-                              style: const TextStyle(fontSize: 18, color: Colors.white),
-                              overflow: TextOverflow.clip, 
+                      Visibility(
+                        visible: receita!.meals!.first.strYoutube!.isNotEmpty,
+                        child: Row(
+                          children: [
+                            const Icon(
+                              FontAwesomeIcons.youtube,
+                              color: Colors.red,
+                              size: 34,
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 10), 
+                            Expanded(
+                              child: Text(
+                                'Acesse o passo a passo no YouTube: \n${receita!.meals!.first.strYoutube}',
+                                style: TextStyle(fontSize: 18, color: ColorsApp.corFontePrimaria),
+                                overflow: TextOverflow.clip, 
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
