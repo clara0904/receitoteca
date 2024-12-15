@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:receitoteca/models/categorias.dart';
 import 'package:receitoteca/screens/list_revenue_screen.dart';
+import 'package:receitoteca/theme/colors.dart';
 
 class CategoriaButton extends StatelessWidget {
   final List<Categories> categorias;
@@ -24,22 +25,28 @@ class CategoriaButton extends StatelessWidget {
               );
             },
             child: Chip(
-              backgroundColor: const Color.fromARGB(255, 255, 254, 171),
-              padding: const EdgeInsets.all(4.0),
+              backgroundColor: ColorsApp.backgroundVerde,
+              padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.5),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: ColorsApp.corFonteTerciaria, 
+                  width: 1.0,                
+                ),
+                borderRadius: BorderRadius.circular(10.0), 
+              ),
               label: Column(
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.network(
                     categoria.strCategoryThumb ?? '', 
-                    width: 70, 
-                    height: 70, 
+                    width: 64, 
+                    height: 64, 
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 6.0), 
+                  const SizedBox(height: 2.0), 
                   Text(
                     categoria.strCategory ?? '', 
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 63, 63, 63),
+                    style: TextStyle(
+                      color: ColorsApp.corFonteTerciaria,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
