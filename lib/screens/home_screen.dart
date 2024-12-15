@@ -4,6 +4,7 @@ import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_categoria.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
+import 'package:receitoteca/theme/colors.dart';
 import 'package:receitoteca/widgets/categoria_button.dart';
 import 'package:receitoteca/widgets/image_revenue.dart';
 import 'package:receitoteca/widgets/random_revenue.dart';
@@ -48,35 +49,35 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'RECEITOTECA',
+          title: Text(
+            'Receitoteca',
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: ColorsApp.corFonteSecundaria,
             ),
           ),
           centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 4, 43, 77),
+          backgroundColor: ColorsApp.backgroundAppBar,
         ),
         body: receita == null
             ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                   child: Column(
-                    //crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Receita do dia',
+                        'Recomendado para você:',
                         style: TextStyle(
                           fontSize: 24,
-                          color: Colors.white,
+                          color: ColorsApp.corFontePrimaria,
                           fontWeight: FontWeight.bold,
                           shadows: [
                             Shadow(
-                              blurRadius: 10.0,
-                              color: Colors.black.withOpacity(0.5),
+                              blurRadius: 8.0,
+                              color: Colors.black.withOpacity(0.3),
                               offset: const Offset(2, 2),
                             ),
                           ],
@@ -93,6 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,  
+                        ),
                         child: SizedBox(
                           width: double.infinity,
                           child: ImageRevenue(
@@ -101,22 +105,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     const SizedBox(height: 18),
-                    const Text(
-                      'Escolha sua receita por categoria:',
+                    Text(
+                      'Categorias:',
                       style: TextStyle(
                         fontSize: 22,
-                        color: Colors.white,
+                        color: ColorsApp.corFontePrimaria,
+                        fontWeight: FontWeight.w600,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 8.0,
+                            color: Colors.black.withOpacity(0.3),
+                            offset: const Offset(2, 2),
+                          ),
+                        ],
                       ),
                     ),
                       categorias.isNotEmpty
                           ? Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: CategoriaButton(categorias: categorias,),
                           )
-                          : const Center(
+                          : Center(
                               child: Text(
                                 'Nenhuma categoria encontrada.',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: ColorsApp.corFontePrimaria),
                               ),
                             ),
                       const SizedBox(height: 20),
