@@ -4,6 +4,7 @@ import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_receita.dart';
 import 'package:receitoteca/theme/colors.dart';
 import 'package:receitoteca/widgets/image_revenue.dart';
+import 'package:receitoteca/widgets/title.dart';
 
 class ReceitaScreen extends StatefulWidget {
   final String endpoint;
@@ -50,20 +51,9 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          '${receita!.meals!.first.strMeal}',
-                          style: TextStyle(
-                            fontSize: 32, 
-                            color: ColorsApp.corFontePrimaria,
-                            fontWeight: FontWeight.w600,
-                            shadows: [
-                              Shadow(
-                                blurRadius: 8.0,
-                                color: Colors.black.withOpacity(0.3),
-                                offset: const Offset(2, 2),
-                              ),
-                            ],
-                          ),
+                        child: TemaTitulo(
+                          titulo: '${receita!.meals!.first.strMeal}', 
+                          size: 32,
                         ),
                       ),
                       Image.network(
@@ -90,7 +80,7 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5),
                             child: Text(
-                              '${measure ?? ''}: $ingredient',
+                              '${(measure != null && measure.trim().isNotEmpty) ? measure : '-'} $ingredient',
                               style: TextStyle(fontSize: 18, color: ColorsApp.corFontePrimaria),
                             ),
                           );
