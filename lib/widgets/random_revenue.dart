@@ -26,6 +26,7 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -35,33 +36,27 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
             ColorsApp.backgroundTerciario,
           ],
         ),
-        borderRadius: BorderRadius.circular(8.0)
+        borderRadius: BorderRadius.circular(8.0),
       ),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          padding: const EdgeInsets.all(14.0),
+          child: Column(  
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                padding: const EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  color: ColorsApp.backgroundPrimario.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(12.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
+              ElevatedButton(
+                onPressed: fetchData,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorsApp.backgroundPrimario.withOpacity(0.8),
+                  padding: const EdgeInsets.all(10.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  elevation: 8,
+                  shadowColor: Colors.black.withOpacity(0.2),
                 ),
                 child: Text(
-                  'Deixe o destino escolher seu próximo prato...',
-                  textAlign: TextAlign.center,
+                  'Deixe o destino escolher sua próxima receita...',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -69,39 +64,7 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: fetchData,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsApp.corFonteSecundaria,
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  elevation: 5,
-                ),
-                child: Text(
-                  'Clique e surpreenda-se',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: ColorsApp.corFontePrimaria,
-                    fontWeight: FontWeight.w600
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              if (receita != null)
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ReceitaScreen(endpoint: receita!.meals!.first.idMeal!),
-                      ),
-                    );
-                  },
-                  child: ReceitaCard(receita: receita),
-                ),
+              if (receita != null) ReceitaCard(receita: receita),
             ],
           ),
         ),
