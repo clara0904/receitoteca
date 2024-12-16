@@ -41,8 +41,7 @@ class CategoriaButton extends StatelessWidget {
                     width: 64, 
                     height: 64, 
                     fit: BoxFit.contain,
-                  ),
-                  const SizedBox(height: 2.0), 
+                  ), 
                   Text(
                     categoria.strCategory ?? '', 
                     style: TextStyle(
