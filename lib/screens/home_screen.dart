@@ -8,6 +8,7 @@ import 'package:receitoteca/theme/colors.dart';
 import 'package:receitoteca/widgets/categoria_button.dart';
 import 'package:receitoteca/widgets/image_revenue.dart';
 import 'package:receitoteca/widgets/random_revenue.dart';
+import 'package:receitoteca/widgets/title.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,13 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Receitoteca',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-              color: ColorsApp.corFonteSecundaria,
-            ),
           ),
           centerTitle: true,
           backgroundColor: ColorsApp.backgroundAppBar,
@@ -68,21 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Recomendado para você:',
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: ColorsApp.corFontePrimaria,
-                          fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 8.0,
-                              color: Colors.black.withOpacity(0.3),
-                              offset: const Offset(2, 2),
-                            ),
-                          ],
-                        ),
-                      ),
+                      const TemaTitulo(titulo: 'Recomendado para você:', size: 22),
                       TextButton(
                         onPressed: () {
                           Navigator.push(
@@ -105,21 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     const SizedBox(height: 18),
-                    Text(
-                      'Categorias:',
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: ColorsApp.corFontePrimaria,
-                        fontWeight: FontWeight.w600,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 8.0,
-                            color: Colors.black.withOpacity(0.3),
-                            offset: const Offset(2, 2),
-                          ),
-                        ],
-                      ),
-                    ),
+                    const TemaTitulo(titulo: 'Categorias: ', size: 22),
                       categorias.isNotEmpty
                           ? Padding(
                             padding: const EdgeInsets.only(top: 8.0),
