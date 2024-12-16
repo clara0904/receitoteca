@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 
 class ColorsApp{
-  static Color backgroundPrimario = const Color(0xFFDBDAD5);
+  static Color backgroundPrimario = const Color.fromARGB(255, 215, 212, 200);
   static Color backgroundVerde = const Color(0xFF9AB5AE);
   static Color backgroundAppBar = const Color(0xFF4C6665);
   static Color backgroundCard = const Color(0xFFA26D5D);
