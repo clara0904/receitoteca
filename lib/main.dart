@@ -17,15 +17,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Poppins',
+        colorSchemeSeed: ColorsApp.backgroundAppBar,
         scaffoldBackgroundColor: ColorsApp.backgroundPrimario,
         appBarTheme: AppBarTheme(
           backgroundColor: ColorsApp.backgroundAppBar,
-          titleTextStyle: const TextStyle(
-            color: Colors.white,
-            fontSize: 24,
+          titleTextStyle: TextStyle(
+            color: ColorsApp.corFonteSecundaria,
+            fontSize: 26,
             fontWeight: FontWeight.bold,
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: ColorsApp.corFonteSecundaria),
           centerTitle: true,
         ),
       ),
