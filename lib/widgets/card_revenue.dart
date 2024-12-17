@@ -23,7 +23,7 @@ class ReceitaCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: Image.network(
                     receita!.meals!.first.strMealThumb ?? '',
                     fit: BoxFit.cover,
