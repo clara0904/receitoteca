@@ -2,7 +2,7 @@
 import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
 import 'package:receitoteca/theme/colors.dart';
-import 'package:receitoteca/widgets/card_revenue.dart';
+import 'package:receitoteca/widgets/widgets_home_screen/card_revenue.dart';
 
 class SorteadorReceita extends StatefulWidget {
   const SorteadorReceita({super.key});
