@@ -3,9 +3,9 @@ import 'package:receitoteca/models/categorias.dart';
 import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_categoria.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
-import 'package:receitoteca/widgets/random_revenue.dart';
-import 'package:receitoteca/widgets/recomendation.dart';
-import 'package:receitoteca/widgets/scrool_category.dart';
+import 'package:receitoteca/widgets/widgets_home_screen/random_revenue.dart';
+import 'package:receitoteca/widgets/widgets_home_screen/recomendation.dart';
+import 'package:receitoteca/widgets/widgets_home_screen/scrool_category.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

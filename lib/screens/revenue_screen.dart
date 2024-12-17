@@ -1,10 +1,10 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_receita.dart';
-import 'package:receitoteca/widgets/ingredients_list.dart';
-import 'package:receitoteca/widgets/main_revenue_image.dart';
-import 'package:receitoteca/widgets/player_revenue.dart';
-import 'package:receitoteca/widgets/revenue_instructions.dart';
+import 'package:receitoteca/widgets/widgets_revenue_screen/ingredients_list.dart';
+import 'package:receitoteca/widgets/widgets_revenue_screen/main_revenue_image.dart';
+import 'package:receitoteca/widgets/widgets_revenue_screen/player_revenue.dart';
+import 'package:receitoteca/widgets/widgets_revenue_screen/revenue_instructions.dart';
 
 class ReceitaScreen extends StatefulWidget {
   final String endpoint;

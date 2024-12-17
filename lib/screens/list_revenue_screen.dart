@@ -2,7 +2,7 @@
 import 'package:receitoteca/repositories/repositorio_receitas.dart';
 import 'package:receitoteca/models/lista_receitas.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
-import 'package:receitoteca/widgets/card_list_revenue.dart';
+import 'package:receitoteca/widgets/widgets_list_revenue_screen/card_list_revenue.dart';
 
 class ListRevenueScreen extends StatefulWidget {
   final String endpoint;
