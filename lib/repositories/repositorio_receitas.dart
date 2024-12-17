@@ -1,5 +1,5 @@
 ﻿import 'package:dio/dio.dart';
-import 'package:receitoteca/models/receitas.dart';
+import 'package:receitoteca/models/lista_receitas.dart';
 
 class RepositorioReceitas {
   final String endpoint;

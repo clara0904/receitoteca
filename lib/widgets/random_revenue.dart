@@ -1,7 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:receitoteca/models/receita.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
-import 'package:receitoteca/screens/revenue_screen.dart';
 import 'package:receitoteca/theme/colors.dart';
 import 'package:receitoteca/widgets/card_revenue.dart';
 
@@ -50,10 +49,9 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
                   backgroundColor: ColorsApp.backgroundPrimario.withOpacity(0.8),
                   padding: const EdgeInsets.all(10.0),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                  elevation: 8,
-                  shadowColor: Colors.black.withOpacity(0.2),
+                  elevation: 12,
                 ),
                 child: Text(
                   'Deixe o destino escolher sua próxima receita...',
