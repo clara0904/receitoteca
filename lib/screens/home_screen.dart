@@ -1,6 +1,9 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:receitoteca/models/categorias.dart';
+import 'package:receitoteca/models/categorias_provider.dart';
 import 'package:receitoteca/models/receita.dart';
+import 'package:receitoteca/models/receita_provider.dart';
 import 'package:receitoteca/repositories/repositorio_categoria.dart';
 import 'package:receitoteca/repositories/repositorio_random.dart';
 import 'package:receitoteca/widgets/widgets_home_screen/random_revenue.dart';
@@ -15,35 +18,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final AleatoriaRepositorio repository = AleatoriaRepositorio();
-  final RepositorioCategoria repositorio = RepositorioCategoria();
-  
-  List<Categories> categorias = [];
-  Receita? receita;
 
   @override
   void initState() {
     super.initState();
-    fetchData();
-    fetchCategorias();
-  }
-
-  void fetchData() async {
-    await repository.getReceita();
-    setState(() {
-      receita = repository.receita;
-    });
-  }
-
-  void fetchCategorias() async {
-    List<Categories> fetchedCategorias = await repositorio.getCategorias();
-    setState(() {
-      categorias = fetchedCategorias;
-    });
+    final receitaProvider = Provider.of<ReceitaProvider>(context, listen: false);
+    final categoriasProvider = Provider.of<CategoriasProvider>(context, listen: false);
+      Future.microtask((){
+        receitaProvider.fetchReceita();
+        categoriasProvider.fetchCategorias();
+      }
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final receitaProvider = Provider.of<ReceitaProvider>(context);
+    final categoriaProvider = Provider.of<CategoriasProvider>(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -51,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'Receitoteca',
           ),
         ),
-        body: receita == null
+        body: receitaProvider.receita == null
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Padding(
@@ -59,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
 
-                  RecomendacaoReceita(receita:  receita,),
+                  RecomendacaoReceita(receita:  receitaProvider.receita,),
 
-                  ScroolCategory(categorias: categorias,),
+                  ScroolCategory(categorias: categoriaProvider.categorias,),
 
                   const SorteadorReceita(),
                   ],
