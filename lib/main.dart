@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:receitoteca/models/categorias_provider.dart';
+import 'package:receitoteca/models/lista_receitas_provider.dart';
+import 'package:receitoteca/models/receita_provider.dart';
+import 'package:receitoteca/repositories/repositorio_receitas.dart';
 import 'package:receitoteca/screens/home_screen.dart';
-import 'package:receitoteca/screens/revenue_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:receitoteca/theme/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ReceitaProvider(),),
+        ChangeNotifierProvider(create: (context) => CategoriasProvider(),),
+      ],
+      child: const Receitoteca(),
+    )
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Receitoteca extends StatelessWidget {
+  const Receitoteca({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,5 +46,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//const Color.fromARGB(255, 9, 59, 100)
