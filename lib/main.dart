@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:receitoteca/models/categorias_provider.dart';
-import 'package:receitoteca/models/lista_receitas_provider.dart';
-import 'package:receitoteca/models/receita_provider.dart';
+import 'package:receitoteca/models/provider/categorias_provider.dart';
+import 'package:receitoteca/models/provider/lista_receitas_provider.dart';
+import 'package:receitoteca/models/provider/receita_random_provider.dart';
+import 'package:receitoteca/models/provider/receita_provider.dart';
 import 'package:receitoteca/repositories/repositorio_receitas.dart';
 import 'package:receitoteca/screens/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +12,10 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ReceitaProvider(),),
+        ChangeNotifierProvider(create: (context) => ReceitaRandomProvider(),),
         ChangeNotifierProvider(create: (context) => CategoriasProvider(),),
+        ChangeNotifierProvider(create: (context) => ListaReceitasProvider(RepositorioReceitas('')),),
+        ChangeNotifierProvider(create: (context) => ReceitaProvider(),),
       ],
       child: const Receitoteca(),
     )
