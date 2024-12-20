@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:receitoteca/models/receita.dart';
-import 'package:receitoteca/repositories/repositorio_receita.dart';
+import 'package:provider/provider.dart';
+import 'package:receitoteca/models/provider/receita_provider.dart';
 import 'package:receitoteca/widgets/widgets_revenue_screen/ingredients_list.dart';
 import 'package:receitoteca/widgets/widgets_revenue_screen/main_revenue_image.dart';
 import 'package:receitoteca/widgets/widgets_revenue_screen/player_revenue.dart';
@@ -15,20 +15,12 @@ class ReceitaScreen extends StatefulWidget {
 }
 
 class _ReceitaScreenState extends State<ReceitaScreen> {
-  late final ReceitaRepositorio repository;
-  Receita? receita;
-
   @override
   void initState() {
     super.initState();
-    repository = ReceitaRepositorio(widget.endpoint);
-    fetchData();
-  }
-
-  void fetchData() async {
-    await repository.getReceita();
-    setState(() {
-      receita = repository.receita;
+    Future.microtask(() {
+      Provider.of<ReceitaProvider>(context, listen: false)
+        .fetchReceita(widget.endpoint);
     });
   }
 
@@ -41,28 +33,31 @@ class _ReceitaScreenState extends State<ReceitaScreen> {
             'Receitoteca',
           ),
         ),
-        body: receita == null
-            ? const Center(child: CircularProgressIndicator())
-            : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+        body: Consumer<ReceitaProvider>(
+          builder: (context, receitaProvider, child) {
+            final receita = receitaProvider.receita;
 
-                      ImagemPrincipalReceita(receita: receita,),
+            if (receita == null) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-                      ListaIngredientes(receita: receita),
-
-                      InstrucoesReceita(receita: receita),
-
-                      TutorialReceita(receita: receita),
-                    ],
-                  ),
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ImagemPrincipalReceita(receita: receita),
+                    ListaIngredientes(receita: receita),
+                    InstrucoesReceita(receita: receita),
+                    TutorialReceita(receita: receita),
+                  ],
                 ),
               ),
+            );
+          },
+        ),
       ),
     );
   }
 }
-
