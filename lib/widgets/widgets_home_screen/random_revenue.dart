@@ -1,29 +1,16 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:receitoteca/models/receita.dart';
-import 'package:receitoteca/repositories/repositorio_random.dart';
+import 'package:provider/provider.dart';
+import 'package:receitoteca/models/provider/receita_random_provider.dart';
 import 'package:receitoteca/theme/colors.dart';
 import 'package:receitoteca/widgets/widgets_home_screen/card_revenue.dart';
 
-class SorteadorReceita extends StatefulWidget {
+class SorteadorReceita extends StatelessWidget {
   const SorteadorReceita({super.key});
 
   @override
-  State<SorteadorReceita> createState() => _SorteadorReceitaState();
-}
-
-class _SorteadorReceitaState extends State<SorteadorReceita> {
-  final AleatoriaRepositorio repository = AleatoriaRepositorio();
-  Receita? receita;
-
-  void fetchData() async {
-    await repository.getReceita();
-    setState(() {
-      receita = repository.receita;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final receitaProvider = context.watch<ReceitaRandomProvider>();
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -40,11 +27,13 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(14.0),
-          child: Column(  
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton(
-                onPressed: fetchData,
+                onPressed: () {
+                  receitaProvider.fetchReceita();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsApp.backgroundPrimario.withOpacity(0.8),
                   padding: const EdgeInsets.all(10.0),
@@ -62,7 +51,8 @@ class _SorteadorReceitaState extends State<SorteadorReceita> {
                   ),
                 ),
               ),
-              if (receita != null) ReceitaCard(receita: receita),
+              if (receitaProvider.receita != null)
+                ReceitaCard(receita: receitaProvider.receita!),
             ],
           ),
         ),
