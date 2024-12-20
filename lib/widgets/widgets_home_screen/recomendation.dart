@@ -5,7 +5,6 @@ import 'package:receitoteca/widgets/widgets_home_screen/image_revenue.dart';
 import 'package:receitoteca/widgets/theme_title.dart';
 
 class RecomendacaoReceita extends StatelessWidget {
-  //final BuildContext context;
   final Receita? receita;
   const RecomendacaoReceita({super.key, required this.receita});
 
