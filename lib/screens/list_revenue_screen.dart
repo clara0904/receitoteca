@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:receitoteca/repositories/repositorio_receitas.dart';
-import 'package:receitoteca/models/lista_receitas.dart';
+import 'package:provider/provider.dart';
+import 'package:receitoteca/models/provider/lista_receitas_provider.dart';
 import 'package:receitoteca/screens/revenue_screen.dart';
 import 'package:receitoteca/widgets/widgets_list_revenue_screen/card_list_revenue.dart';
 
@@ -13,25 +13,24 @@ class ListRevenueScreen extends StatefulWidget {
 }
 
 class _ListRevenueScreenState extends State<ListRevenueScreen> {
-  late final RepositorioReceitas repositoryReceitas;
-  List<Meals> receitas = [];
 
   @override
   void initState() {
     super.initState();
-    repositoryReceitas = RepositorioReceitas(widget.endpoint);
     fetchReceitas();
   }
 
- void fetchReceitas() async {
-  List<Meals> fetchedReceitas = await repositoryReceitas.getReceitas();
-  setState(() {
-    receitas = fetchedReceitas;
-  });
-}
+  void fetchReceitas() {
+    final provider = Provider.of<ListaReceitasProvider>(context, listen: false);
+    provider.fetchReceitas(widget.endpoint);
+    provider.receitas.clear(); 
+  }
 
 @override
 Widget build(BuildContext context) {
+  final receitasProvider = Provider.of<ListaReceitasProvider>(context);
+  final receitas = receitasProvider.receitas;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
